@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "fake-review-detector": {
+      "command": "/home/pedro/Documents/curso_udemy_langchain/exercicio/.venv/bin/python",
+      "args": ["-m", "app.server.mcp_server"],
+      "cwd": "/home/pedro/Documents/curso_udemy_langchain/exercicio"
+    },
+    "fake-review-detector-remote": {
+      "url": "https://pedrohbs1986-fake-review-detector.hf.space/sse"
+    }
+  }
+}
+

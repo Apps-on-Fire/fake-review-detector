@@ -1,0 +1,16 @@
+{
+  "model_type": "TF-IDF + LogisticRegression",
+  "accuracy": 0.9347,
+  "train_size": 32345,
+  "test_size": 8087,
+  "features": [
+    "text_clean (TF-IDF)",
+    "category (OneHot)",
+    "rating (Scaled)"
+  ],
+  "tfidf_max_features": 20000,
+  "ngram_range": [
+    1,
+    2
+  ]
+}

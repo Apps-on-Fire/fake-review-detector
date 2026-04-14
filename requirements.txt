@@ -1,0 +1,10 @@
+mcp[cli]
+langgraph
+pinecone[grpc]
+langchain-pinecone
+langchain-openai
+scikit-learn
+pandas
+joblib
+python-dotenv
+openai
