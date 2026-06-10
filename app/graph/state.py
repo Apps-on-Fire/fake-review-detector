@@ -7,6 +7,9 @@ class ReviewAnalysisState(TypedDict, total=False):
     category: str
     rating: float
 
+    # Per-user OpenAI key, supplied by the caller and scoped to their MCP session.
+    openai_api_key: str
+
     cleaned_text: str
 
     classifier_label: str

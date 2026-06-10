@@ -25,8 +25,15 @@ def explain_verdict(
     confidence: float,
     signals: list[str],
     similar_reviews: list[dict],
+    openai_api_key: str | None = None,
 ) -> str:
-    client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
+    key = openai_api_key or os.environ.get("OPENAI_API_KEY")
+    if not key:
+        raise RuntimeError(
+            "No OpenAI API key available for the explanation step. Pass one via the "
+            "'openai_api_key' tool argument."
+        )
+    client = OpenAI(api_key=key)
 
     similar_block = ""
     for i, sr in enumerate(similar_reviews[:3], 1):

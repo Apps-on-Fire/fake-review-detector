@@ -7,5 +7,6 @@ def retrieve_neighbors_node(state: ReviewAnalysisState) -> dict:
         text=state["input_text"],
         category=state.get("category"),
         top_k=5,
+        openai_api_key=state.get("openai_api_key"),
     )
     return {"similar_reviews": similar}

@@ -11,8 +11,14 @@ def get_pinecone_client() -> Pinecone:
     return Pinecone(api_key=os.environ["PINECODE_API_KEY"])
 
 
-def get_openai_client() -> OpenAI:
-    return OpenAI(api_key=os.environ["OPENAI_API_KEY"])
+def get_openai_client(api_key: str | None = None) -> OpenAI:
+    key = api_key or os.environ.get("OPENAI_API_KEY")
+    if not key:
+        raise RuntimeError(
+            "No OpenAI API key available. Pass one via the 'openai_api_key' tool "
+            "argument, or set OPENAI_API_KEY for local/offline use."
+        )
+    return OpenAI(api_key=key)
 
 
 def embed_text(client: OpenAI, text: str) -> list[float]:
@@ -29,9 +35,14 @@ def embed_texts(client: OpenAI, texts: list[str], batch_size: int = 100) -> list
     return all_embeddings
 
 
-def query_similar(text: str, category: str | None = None, top_k: int = 5) -> list[dict]:
+def query_similar(
+    text: str,
+    category: str | None = None,
+    top_k: int = 5,
+    openai_api_key: str | None = None,
+) -> list[dict]:
     pc = get_pinecone_client()
-    oai = get_openai_client()
+    oai = get_openai_client(openai_api_key)
 
     index = pc.Index(INDEX_NAME)
     embedding = embed_text(oai, text)

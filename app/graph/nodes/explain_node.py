@@ -9,5 +9,6 @@ def explain_node(state: ReviewAnalysisState) -> dict:
         confidence=state["classifier_confidence"],
         signals=state["classifier_signals"],
         similar_reviews=state.get("similar_reviews", []),
+        openai_api_key=state.get("openai_api_key"),
     )
     return {"explanation": explanation}
